@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login in portal</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        h2 {
+            background-color: crimson;
+            color: white;
+            padding: 3px 35px;
+            border-radius: 10px 10px 0 0;
+            margin: 0%;
+        }
+
+        #form {
+            border-radius: 10px 10px 0 0;
+            background-color: antiquewhite;
+        }
+
+        .inputboxes {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            margin: 10px 0;
+        }
+
+        .inputboxes>label {
+            color: rgb(9, 54, 188);
+            padding: 10px 0;
+        }
+
+        .inputboxes>input {
+            padding: 10px 8px;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid gray;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            margin: 10px 0 0 0;
+            border-radius: 0 0 10px 10px;
+            cursor: pointer;
+        }
+
+        small {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <h2>Employee login</h2>
+        <div class="inputboxes">
+            <label for="Employeename">Employee Name: </label>
+            <input type="text" placeholder="Enter Your Employee Name.." id="Employeename" required>
+            <small></small>
+        </div>
+
+        <div class="inputboxes">
+            <label for="EmployeeId">Employee ID : </label>
+            <input type="number" placeholder="Enter Your EmployeeId.." id="EmployeeId" required>
+            <small></small>
+        </div>
+
+        <div class="inputboxes">
+            <label for="email">Email ID : </label>
+            <input type="email" placeholder="Enter Your Mail Id.." id="email" required>
+            <small></small>
+        </div>
+
+        <div class="inputboxes">
+            <label for="password">Password : </label>
+            <input type="password" placeholder="Enter Your Password.." id="password" required>
+            <small></small>
+        </div>
+
+        <div class="inputboxes">
+            <label for="phoneNumber">phone Number:</label>
+            <input type="number"placeholder="Enter your PhoneNumber..."id="phoneNumber" required>
+            <small></small>
+        </div>
+
+        <div>
+            <button type="LOGIN">LOGIN</button>
+        </div>
+    </form>
+    <script>
+        // Form Validation
+
+        const form = document.querySelector('#form');
+        const uname = document.querySelector('#employeename');
+        const EmpId=document.querySelector('#empId');
+        const email = document.querySelector('#email');
+        const pass = document.querySelector('#password');
+        const phoneno=document.querySelector('#phonenumber');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            inputValidation();
+        })
+
+        function inputValidation() {
+            const employeename = uname.value.trim();
+            const EmployeeId=EmpId.value.trim();
+            const emailtrim = email.value.trim();
+            const password = pass.value.trim();
+            const phoneNumber=phoneno.value.trim();
+
+            if (employeename === '') {
+                setError(uname, 'employeename is empty');
+            } else {
+                setSuccess(uname)
+            }
+            if (EmployeeId ===''){
+                setError(uname, 'employeename is empty');
+            } else {
+                setSuccess(uname)
+            }
+
+            if (emailtrim === '') {
+                setError(email, 'Email is empty')
+            }
+            else {
+                setSuccess(email)
+            }
+
+            if (password === '') {
+                setError(pass, 'password is empty')
+            } else if (password.length > 8 || password.length < 4) {
+                setError(pass, 'password must be 4 to 8 characters')
+            } else {
+                setSuccess(pass)
+            }
+            if(phoneNumber ===''){
+                setError(phoneno,'phoneNumber is empty')
+            }
+            else{
+                setSuccess(phoneno)
+            }
+
+        }
+
+        function setError(input, message) {
+            const inputboxes = input.parentElement;
+            const err = inputboxes.querySelector('small')
+            err.innerText = message;
+        }
+
+        function setSuccess(element) {
+            const inputboxes = element.parentElement;
+            const err = inputboxes.querySelector("small");
+            err.innerText = '';
+        }
+    </script>
+</body>
+
+</html>
